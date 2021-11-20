@@ -17,6 +17,9 @@ ticker = [] #contains only tickers
 for item in output:
     ticker.append(item[0])
 
+
+current_price = []
+
 def current_stock_price():
     #loop over a list of stocks and return current price of each stock
     i = 0
@@ -27,7 +30,14 @@ def current_stock_price():
     return i, price
 
 current_prices = current_stock_price()
-print(current_prices)
+
+for item in current_prices:
+    current_price.append(item)
+
+#connect output and ticker and write it to a file
+
+
+
 
 
 
