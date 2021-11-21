@@ -5,11 +5,13 @@ import csv
 output = [] #contains only ticker and purchase price
 
 #create new output just with desired rows
-with open("Portfolio.csv", "r+") as stocks: 
+with open("Portfolio_test.csv", "r+") as stocks: 
     for line in stocks:
         cells = line.split(",")
+        list(cells)
         output.append(( cells[ 0 ], cells[ 10]))
 
+print(output)
 
 ticker = [] #contains only tickers
 
@@ -18,21 +20,29 @@ for item in output:
     ticker.append(item[0])
 
 
-current_price = []
+
+
 
 def current_stock_price():
     #loop over a list of stocks and return current price of each stock
-    i = 0
     
-    while i < len(ticker):
-        price = print(str(ticker[i]) + " " + str(yf.Ticker(ticker[i]).info['regularMarketPrice']))
-        i += 1
-    return i, price
+    current_price = []
 
-current_prices = current_stock_price()
+    for i in range(len(ticker)):
+        
+        price = str(ticker[i]) + " " + str(yf.Ticker(ticker[i]).info['regularMarketPrice'])
+        price.split()
 
-for item in current_prices:
-    current_price.append(item)
+        current_price.append(price)
+    
+    return current_price
+
+with open("portfolio_new.csv", "w") as file:
+    writer = csv.writer(file)
+    writer.writerows(current_stock_price())
+    # try to solve the format
+
+
 
 #connect output and ticker and write it to a file
 
