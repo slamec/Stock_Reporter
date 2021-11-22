@@ -9,7 +9,7 @@ with open("Portfolio_test.csv", "r+") as stocks:
     for line in stocks:
         cells = line.split(",")
         list(cells)
-        output.append(( cells[ 0 ], cells[ 10]))
+        output.append((cells[ 0 ], cells[ 10]))
 
 print(output)
 
@@ -33,8 +33,10 @@ def current_stock_price():
 
         current_price.append((tickers[0], tickers[1]))
 
-    
+    current_price.append(output) #output should be splitted same as current price list
     return current_price
+
+print(current_stock_price())
 
 with open("portfolio_new.csv", "w") as file:
     writer = csv.writer(file)
