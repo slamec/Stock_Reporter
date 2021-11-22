@@ -20,9 +20,6 @@ for item in output:
     ticker.append(item[0])
 
 
-
-
-
 def current_stock_price():
     #loop over a list of stocks and return current price of each stock
     
@@ -30,17 +27,19 @@ def current_stock_price():
 
     for i in range(len(ticker)):
         
-        price = str(ticker[i]) + " " + str(yf.Ticker(ticker[i]).info['regularMarketPrice'])
-        price.split()
+        price = str(ticker[i]) + "," + str(yf.Ticker(ticker[i]).info['regularMarketPrice'])
+        tickers = price.split(",")
+        list(tickers)
 
-        current_price.append(price)
+        current_price.append((tickers[0], tickers[1]))
+
     
     return current_price
 
 with open("portfolio_new.csv", "w") as file:
     writer = csv.writer(file)
     writer.writerows(current_stock_price())
-    # try to solve the format
+
 
 
 
