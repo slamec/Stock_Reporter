@@ -38,14 +38,13 @@ def current_stock_price():
 
 print(current_stock_price())
 
-with open("portfolio_new.csv", "w") as file:
+
+with open("portfolio_new.csv", "w", newline='') as file:
     writer = csv.writer(file)
-    writer.writerows(current_stock_price())
+    for row in current_stock_price():
+        writer.writerow(row)
 
 
-
-
-#connect output and ticker and write it to a file
 
 
 
