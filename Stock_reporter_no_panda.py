@@ -9,7 +9,7 @@ with open("Portfolio_test.csv", "r+") as stocks:
     for line in stocks:
         cells = line.split(",")
         list(cells)
-        output.append((cells[ 0 ], cells[ 10]))
+        output.append((cells[0], cells[10]))
 
 print(output)
 
@@ -19,31 +19,37 @@ ticker = [] #contains only tickers
 for item in output:
     ticker.append(item[0])
 
-
-def current_stock_price():
     #loop over a list of stocks and return current price of each stock
-    
-    current_price = []
 
-    for i in range(len(ticker)):
+print(ticker)    
+
+purchase_price = []
+
+for item in output:
+    purchase_price.append(item[1])
+
+current_price = []
+
+for i in range(len(ticker)):
         
-        price = str(ticker[i]) + "," + str(yf.Ticker(ticker[i]).info['regularMarketPrice'])
-        tickers = price.split(",")
-        list(tickers)
+    price = str(ticker[i]) + "," + str(yf.Ticker(ticker[i]).info['regularMarketPrice'])
+    tickers = price.split(",")
+    list(tickers)
 
-        current_price.append((tickers[0], tickers[1]))
+    current_price.append(tickers[1])
 
-    current_price.append(output) #output should be splitted same as current price list
-    return current_price
+print(current_price)
 
-print(current_stock_price())
 
 
 with open("portfolio_new.csv", "w", newline='') as file:
     writer = csv.writer(file)
-    for row in current_stock_price():
-        writer.writerow(row)
+    for row in zip(ticker, purchase_price, current_price):
+            writer.writerow(row)
 
+
+
+#thing how to write also ticker to a same file two list to different columns with different names
 
 
 
