@@ -1,4 +1,3 @@
-import os
 import yfinance as yf 
 import csv
 
@@ -16,7 +15,7 @@ print(output)
 ticker = [] #contains only tickers
 
 #append ticker with tickers only
-for item in output:
+for item in output[1:]:
     ticker.append(item[0])
 
     #loop over a list of stocks and return current price of each stock
@@ -25,7 +24,7 @@ print(ticker)
 
 purchase_price = []
 
-for item in output:
+for item in output[1:]:
     purchase_price.append(item[1])
 
 current_price = []
@@ -40,16 +39,15 @@ for i in range(len(ticker)):
 
 print(current_price)
 
-
+header = ["Symbol", "Purchase price", "Current price"]
 
 with open("portfolio_new.csv", "w", newline='') as file:
     writer = csv.writer(file)
+    writer.writerow(i for i in header)
     for row in zip(ticker, purchase_price, current_price):
             writer.writerow(row)
 
 
-
-#thing how to write also ticker to a same file two list to different columns with different names
 
 
 
