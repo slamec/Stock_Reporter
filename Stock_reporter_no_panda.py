@@ -4,7 +4,7 @@ import csv
 output = [] #contains only ticker and purchase price
 
 #create new output just with desired rows
-with open("Portfolio_test.csv", "r+") as stocks: 
+with open("Portfolio.csv", "r+") as stocks: 
     for line in stocks:
         cells = line.split(",")
         list(cells)
