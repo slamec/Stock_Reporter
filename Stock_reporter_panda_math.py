@@ -3,7 +3,7 @@ import pandas as pd
 #from subprocess import call
 #call(["python", "Stock_reporter_no_panda.py"])
 
-portfolio = pd.read_csv("Portfolio_new.csv")
+portfolio = pd.read_csv("portfolio_new.csv")
 print(portfolio)
 
 divide_columns = portfolio['Current price'] / portfolio['Purchase price'] - 1

@@ -1,34 +1,39 @@
-import yfinance as yf 
-import csv
+import yfinance as yf #import Yahoo finance module
+import csv #import csv module
 
 output = [] #contains only ticker and purchase price
 
 #create new output just with desired rows
-with open("Portfolio_test.csv", "r+") as stocks: 
+with open("Portfolio.csv", "r+") as stocks: 
     for line in stocks:
         cells = line.split(",")
         list(cells)
         output.append((cells[0], cells[10]))
 
-print(output)
+print(output) #control
 
-ticker = [] #contains only tickers
+#contains only tickers from csv files
+ticker = [] 
 
-#append ticker with tickers only
+#append ticker with tickers only, avoids first row [0]
+#loop over a list of stocks
 for item in output[1:]:
     ticker.append(item[0])
+    
+print(ticker) #control
 
-    #loop over a list of stocks and return current price of each stock
-
-print(ticker)    
-
+#contains only purchase price
 purchase_price = []
 
+#append list with purchase price only, avoids first row [0]
+#loop over a list of purchase price
 for item in output[1:]:
     purchase_price.append(item[1])
 
+#contains current market price
 current_price = []
 
+#takes list of tickers and adds current market price 
 for i in range(len(ticker)):
         
     price = str(ticker[i]) + "," + str(yf.Ticker(ticker[i]).info['regularMarketPrice'])
@@ -37,24 +42,28 @@ for i in range(len(ticker)):
 
     current_price.append(tickers[1])
 
-print(current_price)
+print(current_price) #control
 
+#header for csv file
 header = ["Symbol", "Purchase price", "Current price"]
 
-with open("Portfolio_new.csv", "w", newline='') as file:
+#writes to csv file ticker, purchase price, current market price
+with open("portfolio_new.csv", "w", newline='') as file:
     writer = csv.writer(file)
     writer.writerow(i for i in header)
     for row in zip(ticker, purchase_price, current_price):
             writer.writerow(row)
 
-#loop over all lists and return one final list
+#final list for internal use
 final_list = []
+
+#appends one list with multiple lists zip(), 
 for (a, b, c) in zip(ticker, purchase_price, current_price):
     final_list.append(a)
     final_list.append(b)
-    final_list.append(c)
+    final_list.append(a)
 
-print(final_list)
+print(final_list) #control
 
 
 
