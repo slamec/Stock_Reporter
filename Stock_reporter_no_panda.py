@@ -4,7 +4,7 @@ import csv
 output = [] #contains only ticker and purchase price
 
 #create new output just with desired rows
-with open("Portfolio.csv", "r+") as stocks: 
+with open("Portfolio_test.csv", "r+") as stocks: 
     for line in stocks:
         cells = line.split(",")
         list(cells)
@@ -47,6 +47,14 @@ with open("portfolio_new.csv", "w", newline='') as file:
     for row in zip(ticker, purchase_price, current_price):
             writer.writerow(row)
 
+#loop over all lists and return one final list
+final_list = []
+for (a, b, c) in zip(ticker, purchase_price, current_price):
+    final_list.append(a)
+    final_list.append(b)
+    final_list.append(c)
+
+print(final_list)
 
 
 
