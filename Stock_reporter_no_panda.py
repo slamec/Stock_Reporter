@@ -41,7 +41,7 @@ print(current_price)
 
 header = ["Symbol", "Purchase price", "Current price"]
 
-with open("portfolio_new.csv", "w", newline='') as file:
+with open("Portfolio_new.csv", "w", newline='') as file:
     writer = csv.writer(file)
     writer.writerow(i for i in header)
     for row in zip(ticker, purchase_price, current_price):
