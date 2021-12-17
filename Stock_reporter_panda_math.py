@@ -23,4 +23,4 @@ portfolio.to_csv("Stock_list_final.csv", index=False)
 portfolio.to_excel ("Stock_final.xlsx", index = None, header=True)
 
 #calculate mean from duplicate values ->>> next step
-#https://stackoverflow.com/questions/39919570/pandas-calculating-the-mean-values-of-duplicate-entries-in-a-dataframe
+#make total price
