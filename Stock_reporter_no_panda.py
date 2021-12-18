@@ -55,15 +55,15 @@ with open("portfolio_new.csv", "w", newline='') as file:
             writer.writerow(row)
 
 #final list for internal use
-final_list = []
+#final_list = []
 
 #appends one list with multiple lists zip(), 
-for (a, b, c) in zip(ticker, purchase_price, current_price):
-    final_list.append(a)
-    final_list.append(b)
-    final_list.append(a)
+#for (a, b, c) in zip(ticker, purchase_price, current_price):
+    #final_list.append(a)
+    #final_list.append(b)
+    #final_list.append(a)
 
-print(final_list) #control
+#print(final_list) #control
 
 
 
