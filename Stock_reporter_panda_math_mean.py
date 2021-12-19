@@ -28,5 +28,5 @@ print(percent_list)
 portfolio["Total gain (%)"] = percent_list
 portfolio.to_csv("Stock_list_final.csv", index = False)
 
-#portfolio.to_excel("Stock_final.xlsx", index = None, header=True)
+portfolio.to_excel("Stock_final.xlsx", index = None, header=True)
 

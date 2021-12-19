@@ -1,0 +1,8 @@
+Well the issue was pretty dumb, I did run pip install python-dotenv and sudo pip install python-dotenv (the script need root permission to access some folder) but I didn't do sudo -H pip install python-dotenv.
+
+this should be installed 
+
+folder should be in computer not in mnt directory
+
+do not forger chmod +x filename
+
