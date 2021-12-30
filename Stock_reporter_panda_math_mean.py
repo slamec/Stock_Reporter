@@ -13,6 +13,8 @@ print(portfolio) #control
 
 #make gain/lose in %
 divide_columns = portfolio['Current price'] / portfolio['Purchase price'] - 1
+#count differences
+difference = portfolio['Current price'] - portfolio['Purchase price']
 
 #create new list with %
 percent_list = []
@@ -22,9 +24,16 @@ for i in divide_columns:
     percent = (format_number + " %") 
     percent_list.append(percent)
 
+difference_list = []
+for i in difference:
+    diff_format = "{:.2f}".format(i)
+    difference_list.append(diff_format)
+
 print(percent_list)
+print(difference_list)
 
 #write total gain % to csv/excel
+portfolio["Difference"] = difference_list
 portfolio["Total gain (%)"] = percent_list
 portfolio.to_csv("Stock_list_final.csv", index = False)
 
