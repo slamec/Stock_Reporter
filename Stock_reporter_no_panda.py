@@ -8,7 +8,7 @@ with open("Portfolio.csv", "r+") as stocks:
     for line in stocks:
         cells = line.split(",")
         list(cells)
-        output.append((cells[0], cells[10]))
+        output.append((cells[0], cells[10], cells[11]))
 
 print(output) #control
 
@@ -21,6 +21,16 @@ for item in output[1:]:
     ticker.append(item[0])
     
 print(ticker) #control
+
+#contains quantity 
+quantity = []
+
+#append list with purchase price only, avoids first row [0]
+#loop over a list of quantity
+for item in output[2:]:
+    quantity.append(item[2])
+
+print(quantity)
 
 #contains only purchase price
 purchase_price = []
@@ -45,13 +55,13 @@ for i in range(len(ticker)):
 print(current_price) #control
 
 #header for csv file
-header = ["Symbol", "Purchase price", "Current price"]
+header = ["Symbol", "Purchase price", "Current price", "Quantity"]
 
 #writes to csv file ticker, purchase price, current market price
 with open("portfolio_new.csv", "w", newline='') as file:
     writer = csv.writer(file)
     writer.writerow(i for i in header)
-    for row in zip(ticker, purchase_price, current_price):
+    for row in zip(ticker, purchase_price, current_price, quantity):
             writer.writerow(row)
 
 #final list for internal use
