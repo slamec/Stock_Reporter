@@ -1,6 +1,3 @@
-#gmail - stockreporter841, Kolorovno16
-#https://realpython.com/python-send-email/
-
 import smtplib, ssl
 
 from email import encoders
