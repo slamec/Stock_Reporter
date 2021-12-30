@@ -4,7 +4,7 @@ import csv #import csv module
 output = [] #contains only ticker and purchase price
 
 #create new output just with desired rows
-with open("Portfolio.csv", "r+") as stocks: 
+with open("Portfolio_test.csv", "r+") as stocks: 
     for line in stocks:
         cells = line.split(",")
         list(cells)
@@ -27,7 +27,7 @@ quantity = []
 
 #append list with purchase price only, avoids first row [0]
 #loop over a list of quantity
-for item in output[2:]:
+for item in output[1:]:
     quantity.append(item[2])
 
 print(quantity)
