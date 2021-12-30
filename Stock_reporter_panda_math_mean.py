@@ -19,6 +19,7 @@ divide_columns = portfolio['Current price'] / portfolio['Purchase price'] - 1
 #count differences
 difference = portfolio['Current price'] - portfolio['Purchase price']
 
+#used for quantity as number
 sum = portfolio_sum['Quantity']
 
 print(sum)
@@ -40,7 +41,7 @@ for i in difference:
 #cerate new quantity list
 quantity_list = []
 for i in sum:
-    quantity_format = "{:.2f}".format(i)
+    quantity_format = "{:2f}".format(i)
     quantity_list.append(quantity_format)
 
 
