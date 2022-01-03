@@ -14,15 +14,15 @@ print(portfolio) #control
 #sum of tickers quantity 
 portfolio_sum = portfolio_read.groupby(['Symbol'], as_index= False).sum()
 
-#make gain/lose in %
-divide_columns = portfolio['Current price'] / portfolio['Purchase price'] - 1
-#count differences
-difference = portfolio['Current price'] - portfolio['Purchase price']
-
 #used for quantity as number
 sum = portfolio_sum['Quantity']
+#make gain/lose in %
+divide_columns = (sum * portfolio['Current price']) / (sum * portfolio['Purchase price']) - 1
+#count differences
+difference = portfolio['Current price'] - portfolio['Purchase price']
+#total absolute gain 
+total_gain = (sum * portfolio['Current price']) - (sum * portfolio['Purchase price'])
 
-print(sum)
 
 #create new list with %
 percent_list = []
@@ -44,6 +44,11 @@ for i in sum:
     quantity_format = "{:2f}".format(i)
     quantity_list.append(quantity_format)
 
+#new list of total absolute gain
+total_gain_list = []
+for i in total_gain:
+    gain_format = "{:.2f}".format(i)
+    total_gain_list.append(gain_format)
 
 print(percent_list)
 print(difference_list)
@@ -54,10 +59,11 @@ del portfolio['Quantity']
 
 #write total gain % to csv/excel
 portfolio["Quantity"] = quantity_list
-portfolio["Difference"] = difference_list
+portfolio["Current Difference"] = difference_list
+portfolio["Total gain"] = total_gain_list
 portfolio["Total gain (%)"] = percent_list
 portfolio.to_csv("Stock_list_final.csv", index = False)
 
 portfolio.to_excel("Stock_final.xlsx", index = None, header=True)
 
-#
+
