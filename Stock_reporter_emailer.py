@@ -1,3 +1,4 @@
+#!/usr/local/bin/python3
 import smtplib, ssl
 
 from email import encoders
@@ -53,4 +54,3 @@ with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
     server.sendmail(sender_email, receiver_email, text)
 
 
-#
