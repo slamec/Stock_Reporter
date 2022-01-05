@@ -1,13 +1,12 @@
 #!/usr/local/bin/python3
 import pandas as pd 
+import openpyxl
 
 #read cdv from stock_reporter module
 portfolio_read = pd.read_csv("portfolio_new.csv")
 
 #check for duplicates and make meand, avoin indexes
 portfolio = portfolio_read.groupby(['Symbol'], as_index= False).mean()
-print(portfolio) #control
-
 #sum of tickers quantity 
 portfolio_sum = portfolio_read.groupby(['Symbol'], as_index= False).sum()
 
@@ -19,7 +18,6 @@ divide_columns = (total_quantity * portfolio['Current price']) / (total_quantity
 difference = portfolio['Current price'] - portfolio['Purchase price']
 #total absolute gain 
 total_gain = (total_quantity * portfolio['Current price']) - (total_quantity * portfolio['Purchase price'])
-
 
 #create new list with %
 percent_list = []
@@ -63,10 +61,31 @@ portfolio["Quantity"] = quantity_list
 portfolio["Current Difference"] = difference_list
 portfolio["Total gain"] = total_gain_list
 portfolio["Total gain (%)"] = percent_list
-portfolio["P/L (%)"] = "{:.2f} {}".format(portfolio_total_gain, "%")
+portfolio["P/L"] = "{}\n {:.2f}%".format("P/L ", portfolio_total_gain)
 
-#write everything to a CSV and Excel
-portfolio.to_csv("Stock_list_final.csv", index = False)
+#write everything to Excel
 portfolio.to_excel("Stock_final.xlsx", index = None, header=True)
+portfolio.to_csv("Stock_final.csv", index = False)
 
 
+def count_rows():
+    """Counts rows in a given dataframe"""
+    df = pd.DataFrame(portfolio)
+    result = df.count(numeric_only=True)
+    #returns number of rows plus 4
+    return result[1] + 4
+
+def merge_cells(file_name):
+    """Merge cells in Excel file based given coordinates"""
+    wb = openpyxl.load_workbook(file_name)
+    sheet = wb.active
+
+    coordinate_a = "H2:"
+    coordinate_b = "H" + str(count_rows()) 
+    coordinates = str(coordinate_a) + str(coordinate_b)
+
+    sheet.merge_cells(coordinates)
+    wb.save("Stock_final.xlsx")
+
+#call the function merging cells
+merge_cells("Stock_final.xlsx")
