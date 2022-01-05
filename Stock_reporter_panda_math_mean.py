@@ -35,7 +35,7 @@ for i in difference:
 #cerate new quantity list
 quantity_list = []
 for i in total_quantity:
-    quantity_format = "{:2f}".format(i)
+    quantity_format = "{:.2f}".format(i)
     quantity_list.append(quantity_format)
 
 #new list of total absolute gain
@@ -61,7 +61,7 @@ portfolio["Quantity"] = quantity_list
 portfolio["Current Difference"] = difference_list
 portfolio["Total gain"] = total_gain_list
 portfolio["Total gain (%)"] = percent_list
-portfolio["P/L"] = "{}\n {:.2f}%".format("P/L ", portfolio_total_gain)
+portfolio["P/L (%)"] = "{} {:.2f}%".format("P/L ", portfolio_total_gain)
 
 #write everything to Excel
 portfolio.to_excel("Stock_final.xlsx", index = None, header=True)
@@ -72,8 +72,8 @@ def count_rows():
     """Counts rows in a given dataframe"""
     df = pd.DataFrame(portfolio)
     result = df.count(numeric_only=True)
-    #returns number of rows plus 4
-    return result[1] + 4
+    #returns number of rows plus 3
+    return result[1] + 3
 
 def merge_cells(file_name):
     """Merge cells in Excel file based given coordinates"""
