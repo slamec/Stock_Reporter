@@ -25,9 +25,8 @@ total_gain = (total_quantity * portfolio['Current price']) - (total_quantity * p
 percent_list = []
 for i in divide_columns:
     number = i*100
-    format_number = "{:.2f}".format(number)
-    percent = (format_number + " %") 
-    percent_list.append(percent)
+    format_number = "{:.2f} {}".format(number, "%")
+    percent_list.append(format_number)
 
 #create a list with differences
 difference_list = []
