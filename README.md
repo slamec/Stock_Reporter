@@ -1,0 +1,1 @@
+This script reads CSV exported file from Yahoo finance (portfolio list) and adds current prices. Also shows total gain in %. Then writes to CSV/Excel file and sends to e-mail. Can be runned on daily basis by Linux Crontab or your own script.
