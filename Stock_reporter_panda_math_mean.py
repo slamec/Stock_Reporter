@@ -19,6 +19,9 @@ difference = portfolio['Current price'] - portfolio['Purchase price']
 #total absolute gain 
 total_gain = (total_quantity * portfolio['Current price']) - (total_quantity * portfolio['Purchase price'])
 
+current_price_sum = (total_quantity * portfolio['Current price'])
+purchase_price_sum = (total_quantity * portfolio['Purchase price'])
+
 #create new list with %
 percent_list = []
 for i in divide_columns:
@@ -44,24 +47,46 @@ for i in total_gain:
     gain_format = "{:.2f}".format(i)
     total_gain_list.append(gain_format)
 
+current_price_sum_list = []
+for i in current_price_sum:
+    current_price_format = "{:.2f}".format(i)
+    current_price_sum_list.append(current_price_format)
+
+purchase_price_sum_list = []
+for i in purchase_price_sum:
+    purchase_price_format = "{:.2f}".format(i)
+    purchase_price_sum_list.append(purchase_price_format)
 
 #delete original 'Quantity' column
 del portfolio['Quantity']
 
 #convert list to floating numbers 
-portfolio_sum_int = [int(float(i)) for i in total_gain_list]
+portfolio_sum_int_current = [int(float(i)) for i in current_price_sum_list]
+portfolio_sum_int_purchase = [int(float(i)) for i in purchase_price_sum_list]
 
-#sum of positive and negative numbers from the list
-portfolio_sum_positive = [i for i in portfolio_sum_int if i >= 0]
-portfolio_sum_negative = [i for i in portfolio_sum_int if i < 0]
-portfolio_total_gain = (1- sum(portfolio_sum_positive) / sum(portfolio_sum_negative)) 
+#list of positive and negative numbers from the list
+portfolio_sum_positive = [i for i in portfolio_sum_int_current if i >= 0]
+portfolio_sum_negative = [i for i in portfolio_sum_int_current if i < 0]
+portfolio_sum_positive_purchase = [i for i in portfolio_sum_int_purchase if i >= 0]
+portfolio_sum_negative_purchase = [i for i in portfolio_sum_int_purchase if i < 0]
+
+
+portfolio_total_gain_current =  sum(portfolio_sum_negative) + sum(portfolio_sum_positive)
+portfolio_total_gain_purchase = sum(portfolio_sum_negative_purchase) + sum(portfolio_sum_positive_purchase)
+
+print(portfolio_total_gain_current)
+print(portfolio_total_gain_purchase)
+
+total_gain_percent = (1 - (portfolio_total_gain_purchase / portfolio_total_gain_current)) * 100  
+
+print(float(total_gain_percent))
 
 #make new rows to a csv/excel
 portfolio["Quantity"] = quantity_list
 portfolio["Current Difference"] = difference_list
 portfolio["Total gain"] = total_gain_list
 portfolio["Total gain (%)"] = percent_list
-portfolio["P/L (%)"] = "{} {:.2f}%".format("P/L ", portfolio_total_gain)
+portfolio["P/L (%)"] = "{} {:.2f}%".format("P/L ", float(total_gain_percent))
 
 #write everything to Excel
 portfolio.to_excel("Stock_final.xlsx", index = None, header=True)

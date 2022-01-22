@@ -25,7 +25,7 @@ message["Bcc"] = receiver_email  # Recommended for mass emails
 # Add body to email
 message.attach(MIMEText(body, "plain"))
 
-filename = "Stock_final.xlsx"  # In same directory as script
+filename = "Stock_final.html"  # In same directory as script
 
 # Open PDF file in binary mode
 with open(filename, "rb") as attachment:

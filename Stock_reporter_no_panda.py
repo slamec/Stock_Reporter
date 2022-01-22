@@ -82,4 +82,3 @@ with open("portfolio_new.csv", "w", newline='') as file:
 
 
 
-
