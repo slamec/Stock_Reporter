@@ -54,7 +54,7 @@ portfolio_sum_int = [int(float(i)) for i in total_gain_list]
 #sum of positive and negative numbers from the list
 portfolio_sum_positive = [i for i in portfolio_sum_int if i >= 0]
 portfolio_sum_negative = [i for i in portfolio_sum_int if i < 0]
-portfolio_total_gain = (sum(portfolio_sum_positive) / sum(portfolio_sum_negative) - 1) * (-1) 
+portfolio_total_gain = (1- sum(portfolio_sum_positive) / sum(portfolio_sum_negative)) 
 
 #make new rows to a csv/excel
 portfolio["Quantity"] = quantity_list
@@ -89,3 +89,6 @@ def merge_cells(file_name):
 
 #call the function merging cells
 merge_cells("Stock_final.xlsx")
+
+df = pd.read_excel("Stock_final.xlsx")
+df.to_html("Stock_final.html")
