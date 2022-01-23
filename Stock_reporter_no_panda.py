@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 import yfinance as yf #import Yahoo finance module
 import csv #import csv module
 
