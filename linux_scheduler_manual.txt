@@ -6,3 +6,4 @@ folder should be in computer not in mnt directory
 
 do not forger chmod +x filename
 
+* * * * * (cd /home/udi/foo/ || exit 1; ./bar.py)
