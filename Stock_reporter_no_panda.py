@@ -11,8 +11,6 @@ with open("Portfolio.csv", "r+") as stocks:
         list(cells)
         output.append((cells[0], cells[10], cells[11]))
 
-print(output) #control
-
 #contains only tickers from csv files
 ticker = [] 
 
@@ -21,8 +19,6 @@ ticker = []
 for item in output[1:]:
     ticker.append(item[0])
     
-print(ticker) #control
-
 #contains quantity 
 quantity = []
 
@@ -30,8 +26,6 @@ quantity = []
 #loop over a list of quantity
 for item in output[1:]:
     quantity.append(item[2])
-
-print(quantity)
 
 #contains only purchase price
 purchase_price = []
@@ -41,6 +35,8 @@ purchase_price = []
 for item in output[1:]:
     purchase_price.append(item[1])
 
+
+print(Working on current prices...)
 #contains current market price
 current_price = []
 
