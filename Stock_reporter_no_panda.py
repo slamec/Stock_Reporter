@@ -36,7 +36,7 @@ for item in output[1:]:
     purchase_price.append(item[1])
 
 
-print(Working on current prices...)
+print('Working on current prices...')
 #contains current market price
 current_price = []
 
